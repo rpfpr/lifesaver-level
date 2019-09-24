@@ -6,7 +6,7 @@ class HealthCheck extends React.Component {
     super(props)
     this.state = {
       currentWeightInKG: 0,
-      percentage: '0%'
+      percentage: '0'
     }
   }
 
@@ -31,19 +31,16 @@ class HealthCheck extends React.Component {
     axios(AxiosConfig)
       .then(response => {
         let data = response.data.values[0]
-        console.log(data.value)
         this.setState({
           currentWeightInKG: data.value,
           stylePercentage: (100 - this.convertToPercentage(data.value)) + '%',
           percentage: this.convertToPercentage(data.value)
         })
-        console.log(this.state);
       })
   }
 
   convertToPercentage = (weightInKg) => {
     let convertedWeight = (weightInKg - 4.08)/22.23 * 100
-    console.log(convertedWeight)
     if (convertedWeight > 100) {
       convertedWeight = 100
     } else if (convertedWeight < 0) {
