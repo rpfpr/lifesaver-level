@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.coffee-container{
+	position: relative;
+	height: 100px;
+	width: 55px;
+	margin: 0 auto;
+}
+
+.coffee-indicator{
+	position: absolute; 
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-color: #3A2E2E;
+	-webkit-mask-image: url(../src/img/pint-mask.png);
+	-o-mask-image: url(../src/img/pint-mask.png);
+	-moz-mask-image: url(../src/img/pint-mask.png);
+	mask-image: url(../src/img/pint-mask.png);
+}
+
+.coffee-indicator-black{
+	position: absolute; 
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-color: black;
+	-webkit-mask-image: url(../src/img/pint-mask.png);
+	-o-mask-image: url(../src/img/pint-mask.png);
+	-moz-mask-image: url(../src/img/pint-mask.png);
+	mask-image: url(../src/img/pint-mask.png);
+}
+
+.coffee-stroke{
+	position: absolute; 
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	
+	background: url(../src/img/pint-stroke.png)
+}
