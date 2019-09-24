@@ -20,11 +20,11 @@ def m2x_trigger():
     req_json = request.get_json()
     print(f'{req_json}')
     logging.info(f'~~ {req_json} ~~')
-    custom_data = req_json["custom_data"]
+    custom_data = json.loads(req_json["custom_data"])
     if req_json["event"] == "fired":
-        message = f'Conditions met for M2X Trigger named {req_json["trigger"]}. " VALUES: [ '
+        message = f'M2X Trigger {req_json["trigger"]}: keg is running low on coffee. Uh oh! VALUES: [ '
     else:
-        message = f'M2X Trigger named {req_json["trigger"]} has been reset. " VALUES: [ '
+        message = f'M2X Trigger {req_json["trigger"]}: keg has been filled up. Yay! VALUES: [ '
     count = 1
     num_values = len(req_json["values"])
     for stream in req_json["values"]:
@@ -33,7 +33,8 @@ def m2x_trigger():
         count += 1
     msg = EmailMessage()
     msg.set_content(message)
-    msg['Subject'] = f'M2X Trigger named {req_json["trigger"]}'
+    status = "running low" if req_json["event"] == "fired" else "re-filled"
+    msg['Subject'] = f'M2X Trigger named {req_json["trigger"]}: {status}'
     msg['From'] = "coldbrew.keg.lifesaver@gmail.com"
     msg['To'] = custom_data["recipient"]
     s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -43,7 +44,7 @@ def m2x_trigger():
     s.send_message(msg)
     s.close()
     return jsonify(result="Success"), 200
-
+                                                                                             
 @app.route('/m2x-send-data', methods=['POST'])
 def send_data():
     req_json = request.get_json()
@@ -66,7 +67,7 @@ def send_data():
 def health_check():
     health = 'healthy'
     status = 'up'
-    return jsonify(health=health, status=status)
+    return jsonify(health=health, status=status), 200
 
 @app.route('/')
 def render():
