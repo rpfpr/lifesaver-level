@@ -25,7 +25,7 @@ class HealthCheck extends React.Component {
     }
     let AxiosConfig = {
       headers,
-      url: 'http://api-m2x.att.com/v2/devices/68b46af566ab20ed3b02622fbd273bb7/streams/keg-weight/values?limit=1',
+      url: 'https://api-m2x.att.com/v2/devices/68b46af566ab20ed3b02622fbd273bb7/streams/keg-weight/values?limit=1',
       method: 'GET'
     }
     axios(AxiosConfig)

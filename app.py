@@ -52,7 +52,7 @@ def send_data():
     m2x_key = req_json["m2x_key"]
     try:
         value_in_kg = round(float(value)/1000, 2)
-        url = f"http://api-m2x.att.com/v2/devices/{device_id}/streams/keg-weight/value"
+        url = f"https://api-m2x.att.com/v2/devices/{device_id}/streams/keg-weight/value"
         headers = {"X-M2X-KEY": m2x_key}
         json_data = {"value": value_in_kg}
         print(f"Keg weight is: {value_in_kg} kg")
